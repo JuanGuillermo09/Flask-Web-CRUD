@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+<!-- Extiende la plantilla base, heredando header, footer y bloques definidos -->
+
+{% block title %}Iniciar sesión{% endblock %}
+<!-- Bloque de título que reemplaza el título de base.html -->
+
+{% block content %}
+<!-- Bloque principal de contenido que se renderiza dentro de <main> de base.html -->
+
+<section class="login-card" aria-labelledby="loginTitle">
+  <!-- Tarjeta para el formulario de login -->
+  <h2 id="loginTitle">Inicio de sesión</h2>
+  <!-- Título del formulario -->
+
+  <!-- Formulario de login que envía POST a /login; se valida antes con JS -->
+  <form id="loginForm" method="post" action="{{ url_for('login') }}" onsubmit="return validateLogin()">
+    
+    <!-- Campo de usuario -->
+    <label for="username">Usuario</label>
+    <input id="username" name="username" type="text" maxlength="50" required>
+
+    <!-- Campo de contraseña -->
+    <label for="password">Contraseña</label>
+    <input id="password" name="password" type="password" maxlength="128" required>
+
+    <!-- Botón de envío -->
+    <div class="form-row">
+      <button type="submit">Ingresar</button>
+    </div>
+
+    <!-- Nota: el backend debe mostrar mensajes flash si las credenciales son inválidas -->
+  </form>
+
+  <!-- Texto de ayuda con credenciales de prueba -->
+  <p class="help">Credenciales de prueba: <strong>Usuario: admin / Contraseña: 1234</strong></p>
+</section>
+
+{% endblock %}
+<!-- Fin del bloque content -->

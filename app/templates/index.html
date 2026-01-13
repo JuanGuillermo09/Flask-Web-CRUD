@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+<!-- Extiende la plantilla base, hereda header, footer y bloques definidos -->
+
+{% block title %}Panel principal{% endblock %}
+<!-- Bloque de título que reemplaza el título de base.html -->
+
+{% block content %}
+<!-- Bloque principal de contenido que se renderiza dentro de <main> de base.html -->
+
+<section class="form-card">
+    <!-- Tarjeta para el formulario protegido -->
+    <h2>Formulario</h2>
+    <!-- Título del formulario -->
+    
+    <!-- Formulario principal; envía POST a /submit; valida antes con JS -->
+    <form id="mainForm" method="post" action="{{ url_for('submit') }}"
+        onsubmit="return validateMainForm()">
+        
+        <!-- Campo nombre completo -->
+        <label for="nombre">Nombre completo</label>
+        <input id="nombre" name="nombre" type="text" maxlength="100" required>
+
+        <!-- Campo correo electrónico -->
+        <label for="email">Correo electrónico</label>
+        <input id="email" name="email" type="email" maxlength="50" required>
+
+        <!-- Campo número de teléfono (opcional) -->
+        <label for="telefono">Número de teléfono</label>
+        <input id="telefono" name="telefono" type="tel" maxlength="20"
+            pattern="[0-9+()\- ]*">
+
+        <!-- Campo comentarios -->
+        <label for="comentarios">Comentarios</label>
+        <textarea class="fixed-textarea" id="comentarios" name="comentarios"
+            maxlength="200" required></textarea>
+
+        <!-- Botones de acción del formulario -->
+        <div class="form-row">
+            <button type="submit">Enviar</button>
+            <!-- Botón para limpiar el formulario -->
+            <button type="button" id="clearBtn"
+                onclick="clearForm()">Limpiar</button>
+        </div>
+    </form>
+</section>
+
+<section class="form-card">
+    <!-- Tarjeta para mostrar registros guardados -->
+    <h2>Registros guardados</h2>
+
+    <!-- Tabla de registros -->
+    <table id="registrosTable" aria-label="Tabla de registros">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Comentarios</th>
+                <th>Fecha</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in registros %}
+            <!-- Iteración sobre registros desde Flask -->
+            <tr>
+                <td>{{ r.id }}</td>
+                <td>{{ r.nombre }}</td>
+                <td>{{ r.email }}</td>
+                <td>{{ r.telefono }}</td>
+                <td>{{ r.comentarios }}</td>
+                <td>{{ r.created_at }}</td>
+                <td>
+                    <!-- Botón Editar: guarda info en atributos data- para JS -->
+                    <button class="editBtn"
+                        data-id="{{ r.id }}"
+                        data-nombre="{{ r.nombre }}"
+                        data-email="{{ r.email }}"
+                        data-telefono="{{ r.telefono }}"
+                        data-comentarios="{{ r.comentarios }}">
+                        Editar
+                    </button>
+                    <!-- Botón Eliminar: solo necesita el ID -->
+                    <button class="deleteBtn"
+                        data-id="{{ r.id }}">Eliminar</button>
+                </td>
+            </tr>
+            {% else %}
+            <!-- Mensaje si no hay registros -->
+            <tr><td colspan="6">No hay registros aún.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+{% endblock %}
+<!-- Fin del bloque content -->

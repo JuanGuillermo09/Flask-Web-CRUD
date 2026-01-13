@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <!-- Configuración de codificación -->
+        <meta charset="utf-8" />
+        <!-- Configuración de viewport para responsive -->
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <!-- Título dinámico, bloque que cada plantilla puede sobreescribir -->
+        <title>{% block title %}Mi App Flask{% endblock %}</title>
+
+        <!-- Enlace al CSS estático de la aplicación -->
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <!-- Header global: se muestra en todas las vistas que extiendan base -->
+        <header class="site-header">
+            <div class="container">
+                <!-- Nombre de la app o marca -->
+                <h1 class="brand">Prueba Técnica - Frontend</h1>
+
+                <!-- Mostrar usuario y enlace de logout si hay sesión activa -->
+                {% if session.get('user') %}
+                <div class="user-info">
+                    <!-- Nombre del usuario actual -->
+                    <span class="link-logout">Usuario: {{ session.user }}</span>
+                    <!-- Enlace para cerrar sesión -->
+                    <a href="{{ url_for('logout') }}"
+                        class="link-logout">Salir</a>
+                </div>
+                {% endif %}
+            </div>
+        </header>
+
+        <!-- Contenedor principal del contenido -->
+        <main class="container">
+            <!-- Mostrar mensajes flash (éxito o error) -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <div class="flash-wrapper">
+                <!-- Iterar sobre cada mensaje flash -->
+                {% for category, msg in messages %}
+                <div class="flash {{ category }}">{{ msg }}</div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <!-- Bloque principal que cada plantilla rellenará -->
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer global -->
+        <footer class="site-footer">
+            <div class="container">
+                <small>Aplicación local - Prueba técnica</small>
+            </div>
+        </footer>
+
+        <!-- Botón flotante para hacer scroll hacia arriba -->
+        <button id="scrollTopBtn" title="Ir arriba">Ʌ</button>
+
+        <!-- JS estático de la aplicación -->
+        <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+        <!-- Bloque de scripts adicional que cada plantilla puede incluir -->
+        {% block scripts %}{% endblock %}
+    </body>
+</html>

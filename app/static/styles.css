@@ -1,0 +1,254 @@
+
+/* ----------------------
+   Reset ligero de estilos
+-------------------------*/
+* {
+  box-sizing: border-box; /* Todos los elementos incluyen padding y border en el ancho total */
+  margin: 0; /* Quitar márgenes por defecto */
+  padding: 0; /* Quitar padding por defecto */
+}
+
+/* ----------------------
+   Estilos del body
+-------------------------*/
+body {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif; /* Fuente principal */
+  background: #f4f6f8; /* Color de fondo claro */
+  color: #222; /* Color de texto principal */
+  line-height: 1.4; /* Altura de línea para mejor lectura */
+}
+
+/* ----------------------
+   Contenedor principal
+-------------------------*/
+.container {
+  width: 95%; /* Ancho máximo relativo */
+  max-width: 900px; /* Limitar ancho máximo */
+  margin: 18px auto; /* Centrar horizontal y separar vertical */
+}
+
+/* ----------------------
+   Encabezado del sitio
+-------------------------*/
+.site-header {
+  background: #0b67a3; /* Azul oscuro */
+  color: #fff; /* Texto blanco */
+  padding: 14px 0; /* Espaciado vertical */
+}
+
+.site-header .brand {
+  margin-left: 12px; /* Separación del borde izquierdo */
+  font-size: 18px;
+  display: inline-block;
+}
+
+.site-header .user-info {
+  float: right; /* Ubicar a la derecha */
+  margin-right: 12px;
+  font-size: 14px;
+}
+
+.link-logout {
+  color: #fff; /* Color blanco */
+  margin-left: 12px;
+  font-size: 18px;
+}
+
+/* ----------------------
+   Tarjeta Login
+-------------------------*/
+.login-card {
+  background: #fff; /* Fondo blanco */
+  padding: 16px; /* Espaciado interno */
+  border-radius: 6px; /* Bordes redondeados */
+  box-shadow: 0 1px 4px rgba(10, 10, 10, 0.06); /* Sombra ligera */
+  margin: 8px auto; /* Centrar horizontalmente */
+  max-width: 400px; /* Limitar ancho máximo */
+}
+
+/* ----------------------
+   Tarjetas de Formulario
+-------------------------*/
+.form-card {
+  background: #fff;
+  padding: 16px;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(10, 10, 10, 0.06);
+  margin-bottom: 14px; /* Separación inferior entre tarjetas */
+}
+
+/* ----------------------
+   Etiquetas de formulario
+-------------------------*/
+label {
+  display: block; /* Cada etiqueta en línea separada */
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ----------------------
+   Campos de formularios
+-------------------------*/
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+input[type="password"] {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  padding: 8px 10px;
+  margin-top: 6px;
+  border: 1px solid #dfe6ea;
+  border-radius: 4px;
+}
+
+/* ----------------------
+   Fila de botones de formulario
+-------------------------*/
+.form-row {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px; /* Espacio entre botones */
+}
+
+button {
+  background: #0b67a3; /* Color azul principal */
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer; /* Cambia cursor al pasar mouse */
+}
+
+button#clearBtn {
+  background: #6c757d; /* Gris para botón de limpiar */
+}
+
+/* ----------------------
+   Tabla de registros
+-------------------------*/
+table {
+  width: 100%;
+  border-collapse: collapse; /* Elimina espacios entre bordes de celdas */
+  margin-top: 10px;
+}
+
+th,
+td {
+  text-align: left; /* Alinear texto a la izquierda */
+  padding: 10px 8px;
+  border-bottom: 1px solid #eef1f2; /* Línea divisoria */
+  font-size: 14px;
+}
+
+thead th {
+  background: #fafbfc; /* Fondo más claro para encabezados */
+  font-weight: 700; /* Negrita */
+}
+
+/* ----------------------
+   Mensajes flash (alertas)
+-------------------------*/
+.flash-wrapper {
+  margin-bottom: 10px;
+}
+
+.flash {
+  padding: 8px 10px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+.flash.success {
+  background: #e6f4ea; /* Fondo verde suave */
+  color: #066b2f; /* Texto verde oscuro */
+}
+
+.flash.danger {
+  background: #fdecea; /* Fondo rojo suave */
+  color: #a10b0b; /* Texto rojo oscuro */
+}
+
+/* ----------------------
+   Responsive
+-------------------------*/
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column; /* Apilar botones verticalmente */
+  }
+  .site-header .user-info {
+    float: none;
+    margin-top: 8px;
+    display: block;
+    text-align: right;
+  }
+}
+
+/* ----------------------
+   Textarea con tamaño fijo
+-------------------------*/
+.fixed-textarea {
+  resize: none; /* Evita redimensionar manualmente */
+  width: 100%;
+  height: 60px; /* Altura fija */
+}
+
+/* ----------------------
+   Botón para scroll arriba
+-------------------------*/
+#scrollTopBtn {
+  display: none; /* Oculto por defecto */
+  position: fixed; /* Fijo en la pantalla */
+  bottom: 20px; /* A 20px del borde inferior */
+  right: 20px; /* A 20px del borde derecho */
+  z-index: 100; /* Siempre encima */
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#scrollTopBtn:hover {
+  background-color: #555; /* Oscurece al pasar el mouse */
+}
+
+/* ----------------------
+   Botón Editar
+-------------------------*/
+.editBtn {
+  text-align: center;
+  background-color: #3498db; /* azul */
+  color: white;
+  border: none;
+  width: 80px;
+  padding: 5px 10px;
+  margin: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.editBtn:hover {
+  background-color: #2980b9; /* azul más oscuro al pasar mouse */
+}
+
+/* ----------------------
+   Botón Eliminar
+-------------------------*/
+.deleteBtn {
+  text-align: center;
+  background-color: #e74c3c; /* rojo */
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 80px;
+}
+
+.deleteBtn:hover {
+  background-color: #c0392b; /* rojo más oscuro al pasar mouse */
+}
