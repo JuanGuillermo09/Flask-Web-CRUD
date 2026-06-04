@@ -16,8 +16,13 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 # Ruta de la base de datos
-db_path = resource_path("database.db")
+# Reemplaza esto:
+conn = sqlite3.connect('database.db')
 
+# Por esto:
+import os
+db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "database.db")
+conn = sqlite3.connect(db_path)
 # ----------------------------
 # Crear la aplicación Flask
 # ----------------------------
